@@ -138,7 +138,7 @@ func TestMergeRestoreErrorRegistry(t *testing.T) {
 }
 
 func TestAreAllMergesMounted(t *testing.T) {
-	db := sqlite.GetDBByFile("file::memory:mergeall?cache=shared")
+	db := sqlite.GetDBByFile("file:mergeall?mode=memory&cache=shared")
 
 	if err := db.Create(&model2.Merge{MountPoint: "/mnt/mergeA", FSType: "fuse.mergerfs"}).Error; err != nil {
 		t.Fatal(err)
