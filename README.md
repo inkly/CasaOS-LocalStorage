@@ -1,35 +1,92 @@
 # CasaOS-LocalStorage
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/IceWhaleTech/CasaOS-LocalStorage.svg)](https://pkg.go.dev/github.com/IceWhaleTech/CasaOS-LocalStorage) [![Go Report Card](https://goreportcard.com/badge/github.com/IceWhaleTech/CasaOS-LocalStorage)](https://goreportcard.com/report/github.com/IceWhaleTech/CasaOS-LocalStorage) [![goreleaser](https://github.com/IceWhaleTech/CasaOS-LocalStorage/actions/workflows/release.yml/badge.svg)](https://github.com/IceWhaleTech/CasaOS-LocalStorage/actions/workflows/release.yml) [![codecov](https://codecov.io/gh/IceWhaleTech/CasaOS-LocalStorage/branch/main/graph/badge.svg?token=GKFBMQ3157)](https://codecov.io/gh/IceWhaleTech/CasaOS-LocalStorage)
+The storage service of CasaOS. It enumerates the disks and partitions attached to the host, mounts and unmounts them, formats and renames volumes, handles USB automount, and builds and restores the merged `/DATA` tree that the rest of CasaOS reads and writes.
 
-Local Storage service provides local storage and disk management functionalities to CasaOS.
+This repository is part of the **inkly distribution of CasaOS**, a maintained release of the project after upstream [IceWhaleTech/CasaOS-LocalStorage](https://github.com/IceWhaleTech/CasaOS-LocalStorage) stopped shipping in 2025. Almost everything this fork adds came through [alvins82's fork](https://github.com/alvins82/CasaOS-LocalStorage), which kept merged storage working on mergerfs 2.40 and Ubuntu 26.
 
-## Fork release history
+## What it does
 
-- `v0.4.25` — Restore persisted mergerfs mounts before creating default `/DATA` directories so upgrades and service restarts retain the configured merged storage.
+The service listens on a loopback port chosen at start-up and registers these paths with CasaOS-Gateway, which is what the dashboard actually talks to:
 
+| Path | What it serves |
+|---|---|
+| `/v1/disks` | disk and partition list, sizes, USB disks, unmount |
+| `/v1/storage` | list, add, format, rename and remove volumes |
+| `/v1/usb` | the USB automount setting |
+| `/v2/local_storage` | merges (`/merge`, `/merge/init`) and mounts (`/mount`) |
+| `/doc/v2/local_storage` | the OpenAPI document for the v2 API, and its viewer |
 
+Every request needs a CasaOS JWT unless it comes from loopback. The Dropbox and Google Drive routes (`/v1/cloud`, `/v1/driver`) are still in the router but are not registered with the gateway, so nothing reaches them.
 
+Disk hotplug arrives from the kernel over a netlink uevent socket. The service publishes `local-storage:storage_status` and `local-storage:merge_status`, plus per-device disk and USB events, on CasaOS-MessageBus.
 
-## publish api to npm
+### Merged storage
 
-### edit version in package.json
+`/DATA` is where CasaOS keeps app data and user files. To back it with more than one disk, the service mounts [mergerfs](https://github.com/trapexit/mergerfs) — a FUSE union filesystem — over `/DATA` with each selected volume as a branch, so several disks read as one tree without RAID or LVM. Branches are read and changed live through the extended attributes of the `.mergerfs` control file, not by remounting.
 
-### run
-```bash
-yarn
+The pool definition — mount point and source volumes — lives in the SQLite database; nothing is written to `/etc/fstab`. The mount is re-created from that record at boot and re-checked every 30 seconds. `/DATA/AppData` is kept on the system disk and bind-mounted from `/var/lib/casaos/files/AppData`, so a `/DATA` merged from external disks does not put container data on removable media.
 
-yarn start
+`casaos-local-storage -init` runs from `casaos-local-storage-first.service`, ordered `Before=docker.service`: it restores every persisted merge and waits for it before Docker starts containers that have a restart policy.
+
+### Files on the host
+
+| Path | Contents |
+|---|---|
+| `/etc/casaos/local-storage.conf` | log path, DB path, `USBAutoMount`, `EnableMergerFS` |
+| `/var/lib/casaos/db/local-storage.db` | SQLite: volumes (`o_disk`, legacy name) and merges (`o_merge`) |
+| `/var/lib/casaos/files` | the system data tree moved aside when `/DATA` becomes a merge |
+| `/var/log/casaos/local-storage.log` | log |
+| `/usr/share/casaos/shell/local-storage-helper.sh` | the shell helpers it calls for mount and format work |
+
+## Install
+
+Components are not installed individually. One command installs or upgrades the whole distribution:
+
+```sh
+curl -fsSL https://github.com/inkly/CasaOS-Install/releases/latest/download/install.sh | sudo bash
 ```
 
-### publish
+What a release contains, and how it is built, is described in [CasaOS-Install](https://github.com/inkly/CasaOS-Install#readme).
 
-Manual publish
-```bash
-yarn publish
+## What this fork changed
+
+Most of it is alvins82's work, oldest first. Per-release notes are in [CHANGELOG.md](CHANGELOG.md).
+
+- **Ubuntu 26 setup fallback** — the setup script chose its systemd unit directory through a chain of `pushd` fallbacks that never reached the `ID_LIKE` branch, so a distribution without a directory of its own aborted the install with `Unsupported OS`. It now builds an explicit candidate list — `ID/VERSION_CODENAME`, then `ID`, then each `ID_LIKE` — and takes the first that exists.
+- **mergerfs 2.40** — the branch list is read and written through `user.mergerfs.branches`, falling back to the legacy `user.mergerfs.srcmounts` key, so merges stop failing on current mergerfs ([#2](https://github.com/alvins82/CasaOS-LocalStorage/pull/2)).
+- **External-only `/DATA`** — the system disk is no longer added as a branch of the merged pool. The first merge is created by the API from the volumes the user selects, and `/DATA/AppData` stays on the system disk. An install on a flash drive can therefore pool external disks for media.
+- **Accurate usage and ownership** — nested `lsblk` trees are traversed, so filesystems under partitions and LVM logical volumes are listed; used and available space is read from the mounted filesystem rather than the physical disk; each entry keeps its parent disk's model and path ([#5](https://github.com/alvins82/CasaOS-LocalStorage/pull/5)).
+- **Volume rename** — `PUT /v1/storage/rename` relabels ext2/ext3/ext4 volumes with `e2label`, refuses `/`, `/boot` and `/boot/*`, and reads the new label back with `blkid` when `lsblk` has not picked up the udev change yet ([#6](https://github.com/alvins82/CasaOS-LocalStorage/pull/6)).
+- **Default directories** — `Documents`, `Downloads`, `Gallery` and `Media` are created in a new external merge when they are missing ([#7](https://github.com/alvins82/CasaOS-LocalStorage/pull/7)).
+- **Restore before create** — persisted merges are restored before the default `/DATA` directories are created, so an upgrade or a service restart no longer leaves the configured pool unmounted ([#9](https://github.com/alvins82/CasaOS-LocalStorage/pull/9)).
+- **Restore until the disks appear** — the restore pass ran once at boot, so a merge whose source disks were not mounted yet stayed unmounted for the rest of the session. It now runs every 30 seconds, serialized against the API's own create, update and remove calls. A merge point that is not empty fails loudly with the offending entries, and `/merge/init` reports the last restore failure instead of a stale "initialized" ([#10](https://github.com/alvins82/CasaOS-LocalStorage/pull/10)).
+
+Ours is small:
+
+- `TestAreAllMergesMounted` opened `file::memory:mergeall?cache=shared`. That is mattn/go-sqlite3 syntax; this repository uses the pure-Go glebarez driver, which read it as an on-disk file named `:memory:mergeall` and wrote it into the package directory on every run. The test passed anyway, which hid an untracked database in the source tree, no isolation between runs, and a hard failure on any filesystem that rejects `:` in a filename. The DSN is now `file:mergeall?mode=memory&cache=shared`.
+- Releases are published from this fork: `.goreleaser.yaml` targets `inkly`, and the two workflows that could only ever run inside IceWhale — an npm publish to the `@icewhale` scope, and a push to their ZeroTier test server — are removed.
+
+## Development
+
+The service is Linux-only: it uses netlink, FUSE and extended attributes, and does not build on macOS or Windows. Cross-compiling to Linux works anywhere.
+
+```sh
+go build ./...
+go test ./...
 ```
 
-Auto publish
-```bash 
-git push origin dev**
+Both pass on Linux with Go 1.23. `TestLiveMountSourceControl` needs a real mergerfs mount and skips unless `MERGERFS_TEST_MOUNT` points at one; every other test runs without a disk and without root.
+
+From a non-Linux host, build with:
+
+```sh
+GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build ./...
 ```
+
+`codegen/` is generated from `api/local_storage/openapi.yaml`; run `go generate` after changing the spec.
+
+## Licence and credit
+
+Apache License 2.0 — see [LICENSE](LICENSE). The upstream copyright notices are kept in the source, as the licence requires.
+
+CasaOS-LocalStorage was written by IceWhale and its contributors. The merged-storage, disk-reporting and rename work in this repository is [alvins82](https://github.com/alvins82/CasaOS-LocalStorage)'s. CasaOS is a mark of IceWhale; this distribution uses the name to say what it is a release of, and nothing more.
