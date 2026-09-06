@@ -2,6 +2,12 @@
 
 All notable changes to CasaOS LocalStorage are documented here.
 
+## [Unreleased]
+
+### Fixed
+
+- Disk health no longer reads a missing `smart_status` (virtual disks such as QEMU/Proxmox, standby or unopenable devices) as a failure, which showed a red "Damage" tag on the home Storage widget while Storage Manager reported the same disk healthy. `sys_disk` and each item of `GET /v1/disks` now also carry `smart_status` (`passed`, `failed` or `unavailable`); the existing `health` fields keep their type and mean "not failed".
+
 ## [0.4.28] - 2026-08-20
 
 ### Changed
