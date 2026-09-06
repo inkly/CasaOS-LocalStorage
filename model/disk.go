@@ -54,7 +54,8 @@ type Drive struct {
 	Name           string         `json:"name"`
 	Size           uint64         `json:"size"`
 	Model          string         `json:"model"`
-	Health         string         `json:"health"`
+	Health         string         `json:"health"`       // "true" unless SMART reports a failure
+	SmartStatus    string         `json:"smart_status"` // passed, failed or unavailable
 	Temperature    int            `json:"temperature"`
 	DiskType       string         `json:"disk_type"`
 	NeedFormat     bool           `json:"need_format"`
@@ -113,4 +114,7 @@ type DiskStatus struct {
 	Avail  uint64 `json:"avail"` // 可用空间
 	Health bool   `json:"health"`
 	Used   uint64 `json:"used"`
+	// SmartStatus is "failed" if any supported disk failed, "passed" if at
+	// least one reported SMART, "unavailable" otherwise (e.g. virtual disks).
+	SmartStatus string `json:"smart_status"`
 }

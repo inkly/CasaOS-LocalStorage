@@ -338,15 +338,8 @@ func (d *diskService) LSBLK(isUseCache bool) []model.LSBLKModel {
 			}
 			blkChildren = append(blkChildren, child)
 		}
-		if smart.SmartStatus.Passed {
+		if smart.SmartHealth() != model.SmartHealthFailed {
 			blk.Health = "OK"
-		} else {
-			for _, v := range smart.Smartctl.Messages {
-				if strings.Contains(v.String, "STANDBY") {
-					blk.Health = "OK"
-					break
-				}
-			}
 		}
 
 		blk.FSUsed = json.Number(fmt.Sprintf("%d", fsused))

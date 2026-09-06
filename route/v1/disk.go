@@ -2,7 +2,6 @@ package v1
 
 import (
 	"net/http"
-	"reflect"
 	"strconv"
 	"strings"
 
@@ -99,6 +98,8 @@ func GetDiskList(ctx echo.Context) error {
 
 		temp := service.MyService.Disk().SmartCTL(currentDisk.Path)
 		disk.Temperature = temp.Temperature.Current
+		disk.SmartStatus = temp.SmartHealth()
+		disk.Health = strconv.FormatBool(disk.SmartStatus != model1.SmartHealthFailed)
 
 		if systemDisk == nil {
 			// go 5 level deep to look for system block device by mount point being "/"
@@ -111,8 +112,6 @@ func GetDiskList(ctx echo.Context) error {
 				} else if strings.Contains(systemDisk.SubSystems, "usb") {
 					disk.DiskType = "USB"
 				}
-				disk.Health = "true"
-
 				disks = append(disks, disk)
 				continue
 			}
@@ -120,10 +119,6 @@ func GetDiskList(ctx echo.Context) error {
 
 		if !service.IsDiskSupported(currentDisk) {
 			continue
-		}
-
-		if reflect.DeepEqual(temp, model1.SmartctlA{}) {
-			temp.SmartStatus.Passed = true
 		}
 
 		isAvail := true
@@ -141,8 +136,6 @@ func GetDiskList(ctx echo.Context) error {
 			disk.NeedFormat = false
 			avail = append(avail, disk)
 		}
-
-		disk.Health = strconv.FormatBool(temp.SmartStatus.Passed)
 
 		disks = append(disks, disk)
 	}

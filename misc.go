@@ -19,23 +19,14 @@ func sendDiskBySocket() {
 	blkList := service.MyService.Disk().LSBLK(true)
 
 	status := model.DiskStatus{}
-	healthy := true
+	healths := []string{}
 	systemDiskFound := false
 
 	for _, currentDisk := range blkList {
 		if !service.IsDiskSupported(currentDisk) {
 			continue
 		}
-		temp := service.MyService.Disk().SmartCTL(currentDisk.Path)
-		if reflect.DeepEqual(temp, model.SmartctlA{}) {
-			healthy = true
-		} else {
-			if len(temp.ModelName) > 0 {
-				healthy = temp.SmartStatus.Passed
-			} else {
-				healthy = true
-			}
-		}
+		healths = append(healths, service.MyService.Disk().SmartCTL(currentDisk.Path).SmartHealth())
 
 		if !systemDiskFound {
 			if systemStats, ok := service.MountedFilesystemStatsAt(currentDisk, "/"); ok {
@@ -62,7 +53,8 @@ func sendDiskBySocket() {
 		}
 	}
 
-	status.Health = healthy
+	status.SmartStatus = model.AggregateSmartHealth(healths...)
+	status.Health = status.SmartStatus != model.SmartHealthFailed
 	message := make(map[string]interface{})
 	message["sys_disk"] = status
 	if err := service.MyService.NotifySystem().SendSystemStatusNotify(message); err != nil {
