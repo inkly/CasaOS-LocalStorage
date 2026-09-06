@@ -64,6 +64,7 @@ Most of it is alvins82's work, oldest first. Per-release notes are in [CHANGELOG
 Ours is small:
 
 - `TestAreAllMergesMounted` opened `file::memory:mergeall?cache=shared`. That is mattn/go-sqlite3 syntax; this repository uses the pure-Go glebarez driver, which read it as an on-disk file named `:memory:mergeall` and wrote it into the package directory on every run. The test passed anyway, which hid an untracked database in the source tree, no isolation between runs, and a hard failure on any filesystem that rejects `:` in a filename. The DSN is now `file:mergeall?mode=memory&cache=shared`.
+- **No geo-IP at install time.** `build/scripts/migration/script.d` ran `__get_download_domain` at top level, curling `ipconfig.io/country` and then `ifconfig.io/country_code` to pick a download mirror by country. `install.sh` runs every script in that directory on every install and every upgrade, so both services were contacted each time, before the script had even decided whether a migration was due — which, on anything but a pre-0.4 box, it never is. The migration tools now come from GitHub unconditionally; set `CASAOS_DOWNLOAD_DOMAIN`, trailing slash included, to choose a mirror explicitly.
 - Releases are published from this fork: `.goreleaser.yaml` targets `inkly`, and the two workflows that could only ever run inside IceWhale — an npm publish to the `@icewhale` scope, and a push to their ZeroTier test server — are removed.
 
 ## Development

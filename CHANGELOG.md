@@ -2,6 +2,12 @@
 
 All notable changes to CasaOS LocalStorage are documented here.
 
+## [Unreleased]
+
+### Changed
+
+- The install-time migration script no longer geo-locates the host. `__get_download_domain` curled `ipconfig.io/country`, falling back to `ifconfig.io/country_code`, at the top level of `build/scripts/migration/script.d/04-migrate-local-storage.sh` — and `install.sh` runs every script in that directory on every install and every upgrade, so both third-party services were contacted each time regardless of whether a migration applied. Migration tools are fetched from `https://github.com/`; `CASAOS_DOWNLOAD_DOMAIN`, trailing slash included, selects a mirror explicitly. The migration lists are unchanged.
+
 ## [0.4.30] - 2026-09-06
 
 ### Fixed
