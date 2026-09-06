@@ -1,5 +1,24 @@
 package model
 
+import "strings"
+
+// SmartHealth values returned by SmartctlA.SmartHealth.
+const (
+	SmartHealthPassed      = "passed"
+	SmartHealthFailed      = "failed"
+	SmartHealthUnavailable = "unavailable"
+)
+
+// smartctl exit status bits, see smartctl(8) EXIT STATUS.
+const (
+	smartctlExitDeviceOpenFailed = 1 << 1
+	smartctlExitDiskFailing      = 1 << 3
+)
+
+type SmartStatus struct {
+	Passed bool `json:"passed"`
+}
+
 type SmartctlA struct {
 	Smartctl struct {
 		Version      []int    `json:"version"`
@@ -26,9 +45,7 @@ type SmartctlA struct {
 		Blocks int   `json:"blocks"`
 		Bytes  int64 `json:"bytes"`
 	} `json:"user_capacity"`
-	SmartStatus struct {
-		Passed bool `json:"passed"`
-	} `json:"smart_status"`
+	SmartStatus  *SmartStatus `json:"smart_status"`
 	AtaSmartData struct {
 		OfflineDataCollection struct {
 			Status struct {
@@ -69,4 +86,37 @@ type SmartctlA struct {
 	Temperature     struct {
 		Current int `json:"current"`
 	} `json:"temperature"`
+}
+
+// SmartHealth reduces a smartctl report to "passed", "failed" or "unavailable".
+// Virtual disks (QEMU, Hyper-V) return no smart_status object at all, which
+// must not be read as a failure.
+func (m SmartctlA) SmartHealth() string {
+	if (m.SmartStatus != nil && !m.SmartStatus.Passed) || m.Smartctl.ExitStatus&smartctlExitDiskFailing != 0 {
+		return SmartHealthFailed
+	}
+	if m.SmartStatus == nil || m.Smartctl.ExitStatus&smartctlExitDeviceOpenFailed != 0 {
+		return SmartHealthUnavailable
+	}
+	for _, msg := range m.Smartctl.Messages {
+		if strings.Contains(msg.String, "STANDBY") {
+			return SmartHealthUnavailable
+		}
+	}
+	return SmartHealthPassed
+}
+
+// AggregateSmartHealth summarises several SmartHealth values: "failed" if any
+// disk failed, "passed" if at least one passed, "unavailable" otherwise.
+func AggregateSmartHealth(healths ...string) string {
+	result := SmartHealthUnavailable
+	for _, h := range healths {
+		switch h {
+		case SmartHealthFailed:
+			return SmartHealthFailed
+		case SmartHealthPassed:
+			result = SmartHealthPassed
+		}
+	}
+	return result
 }
