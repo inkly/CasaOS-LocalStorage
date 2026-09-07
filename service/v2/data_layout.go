@@ -7,12 +7,12 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/IceWhaleTech/CasaOS-Common/utils/constants"
-	"github.com/IceWhaleTech/CasaOS-Common/utils/file"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/codegen"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/common"
-	mountpkg "github.com/IceWhaleTech/CasaOS-LocalStorage/pkg/mount"
-	model2 "github.com/IceWhaleTech/CasaOS-LocalStorage/service/model"
+	"github.com/inkly/CasaOS-Common/utils/constants"
+	"github.com/inkly/CasaOS-Common/utils/file"
+	"github.com/inkly/CasaOS-LocalStorage/codegen"
+	"github.com/inkly/CasaOS-LocalStorage/common"
+	mountpkg "github.com/inkly/CasaOS-LocalStorage/pkg/mount"
+	model2 "github.com/inkly/CasaOS-LocalStorage/service/model"
 	"github.com/moby/sys/mountinfo"
 )
 

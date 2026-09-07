@@ -3,8 +3,8 @@ package dropbox
 import (
 	"time"
 
-	"github.com/IceWhaleTech/CasaOS-Common/utils/logger"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/model"
+	"github.com/inkly/CasaOS-Common/utils/logger"
+	"github.com/inkly/CasaOS-LocalStorage/model"
 	"go.uber.org/zap"
 )
 

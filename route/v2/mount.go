@@ -4,9 +4,9 @@ import (
 	"errors"
 	"net/http"
 
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/codegen"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/service"
-	v2 "github.com/IceWhaleTech/CasaOS-LocalStorage/service/v2"
+	"github.com/inkly/CasaOS-LocalStorage/codegen"
+	"github.com/inkly/CasaOS-LocalStorage/service"
+	v2 "github.com/inkly/CasaOS-LocalStorage/service/v2"
 
 	"github.com/labstack/echo/v4"
 )

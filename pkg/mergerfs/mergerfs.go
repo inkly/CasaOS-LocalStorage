@@ -7,7 +7,7 @@ import (
 	"strings"
 	"syscall"
 
-	"github.com/IceWhaleTech/CasaOS-Common/utils/logger"
+	"github.com/inkly/CasaOS-Common/utils/logger"
 	"go.uber.org/zap"
 )
 

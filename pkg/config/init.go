@@ -5,8 +5,8 @@ import (
 	"log"
 	"os"
 
-	"github.com/IceWhaleTech/CasaOS-Common/utils/constants"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/model"
+	"github.com/inkly/CasaOS-Common/utils/constants"
+	"github.com/inkly/CasaOS-LocalStorage/model"
 	"gopkg.in/ini.v1"
 )
 

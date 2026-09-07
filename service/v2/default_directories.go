@@ -6,7 +6,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/IceWhaleTech/CasaOS-Common/utils/file"
+	"github.com/inkly/CasaOS-Common/utils/file"
 )
 
 var defaultDirectoryPaths = []string{

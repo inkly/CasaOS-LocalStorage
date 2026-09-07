@@ -8,9 +8,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/IceWhaleTech/CasaOS-Common/utils/logger"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/pkg/sqlite"
-	model2 "github.com/IceWhaleTech/CasaOS-LocalStorage/service/model"
+	"github.com/inkly/CasaOS-Common/utils/logger"
+	"github.com/inkly/CasaOS-LocalStorage/pkg/sqlite"
+	model2 "github.com/inkly/CasaOS-LocalStorage/service/model"
 	"github.com/moby/sys/mountinfo"
 	"gorm.io/gorm"
 	"gotest.tools/v3/assert"

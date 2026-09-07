@@ -2,6 +2,12 @@
 
 All notable changes to CasaOS LocalStorage are documented here.
 
+## [Unreleased]
+
+### Changed
+
+- The Go module path is now `github.com/inkly/CasaOS-LocalStorage`, and the shared library dependency is `github.com/inkly/CasaOS-Common` v0.4.22 (same code as IceWhale's v0.4.21 apart from its own module path). No behaviour changes; the regenerated `codegen/` output is byte-identical.
+
 ## [0.4.31] - 2026-09-07
 
 ### Changed

@@ -6,9 +6,9 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	model1 "github.com/IceWhaleTech/CasaOS-LocalStorage/model"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/service"
-	model2 "github.com/IceWhaleTech/CasaOS-LocalStorage/service/model"
+	model1 "github.com/inkly/CasaOS-LocalStorage/model"
+	"github.com/inkly/CasaOS-LocalStorage/service"
+	model2 "github.com/inkly/CasaOS-LocalStorage/service/model"
 	"github.com/labstack/echo/v4"
 )
 

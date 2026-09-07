@@ -5,11 +5,11 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/IceWhaleTech/CasaOS-Common/utils/file"
+	"github.com/inkly/CasaOS-Common/utils/file"
 	"github.com/glebarez/sqlite"
 	"gorm.io/gorm"
 
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/service/model"
+	"github.com/inkly/CasaOS-LocalStorage/service/model"
 )
 
 type ContextKey string

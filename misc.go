@@ -7,10 +7,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/IceWhaleTech/CasaOS-Common/utils/logger"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/common"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/model"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/service"
+	"github.com/inkly/CasaOS-Common/utils/logger"
+	"github.com/inkly/CasaOS-LocalStorage/common"
+	"github.com/inkly/CasaOS-LocalStorage/model"
+	"github.com/inkly/CasaOS-LocalStorage/service"
 	"github.com/pilebones/go-udev/netlink"
 	"go.uber.org/zap"
 )

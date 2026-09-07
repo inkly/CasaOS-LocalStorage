@@ -1,7 +1,7 @@
 package v2
 
 import (
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/codegen"
+	"github.com/inkly/CasaOS-LocalStorage/codegen"
 )
 
 type LocalStorage struct{}

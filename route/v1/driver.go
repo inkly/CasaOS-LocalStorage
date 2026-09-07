@@ -1,9 +1,9 @@
 package v1
 
 import (
-	"github.com/IceWhaleTech/CasaOS-Common/model"
-	"github.com/IceWhaleTech/CasaOS-Common/utils/common_err"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/internal/op"
+	"github.com/inkly/CasaOS-Common/model"
+	"github.com/inkly/CasaOS-Common/utils/common_err"
+	"github.com/inkly/CasaOS-LocalStorage/internal/op"
 	"github.com/labstack/echo/v4"
 )
 

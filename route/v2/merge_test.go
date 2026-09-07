@@ -3,9 +3,9 @@ package v2
 import (
 	"testing"
 
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/codegen"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/common"
-	model2 "github.com/IceWhaleTech/CasaOS-LocalStorage/service/model"
+	"github.com/inkly/CasaOS-LocalStorage/codegen"
+	"github.com/inkly/CasaOS-LocalStorage/common"
+	model2 "github.com/inkly/CasaOS-LocalStorage/service/model"
 )
 
 func TestApplyMergeSourcesClearsBootstrapPathForExplicitVolumes(t *testing.T) {

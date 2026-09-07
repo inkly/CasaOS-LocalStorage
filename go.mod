@@ -1,10 +1,9 @@
-module github.com/IceWhaleTech/CasaOS-LocalStorage
+module github.com/inkly/CasaOS-LocalStorage
 
 go 1.21
 
 require (
 	bazil.org/fuse v0.0.0-20230120002735-62a210ff1fd5
-	github.com/IceWhaleTech/CasaOS-Common v0.4.9-alpha6
 	github.com/Xhofe/go-cache v0.0.0-20220723083548-714439c8af9a
 	github.com/coreos/go-systemd v0.0.0-20191104093116-d3cd4ed1dbcf
 	github.com/deckarep/golang-set/v2 v2.3.0
@@ -12,6 +11,7 @@ require (
 	github.com/getkin/kin-openapi v0.117.0
 	github.com/glebarez/sqlite v1.8.0
 	github.com/go-resty/resty/v2 v2.7.0
+	github.com/inkly/CasaOS-Common v0.4.22
 	github.com/json-iterator/go v1.1.12
 	github.com/labstack/echo/v4 v4.12.0
 	github.com/maruel/natural v1.1.0
@@ -60,6 +60,7 @@ require (
 	github.com/dropbox/dropbox-sdk-go-unofficial/v6 v6.0.5 // indirect
 	github.com/dsnet/compress v0.0.2-0.20210315054119-f66993602bf5 // indirect
 	github.com/dustin/go-humanize v1.0.1 // indirect
+	github.com/fsnotify/fsnotify v1.7.0 // indirect
 	github.com/gabriel-vasile/mimetype v1.4.2 // indirect
 	github.com/geoffgarside/ber v1.1.0 // indirect
 	github.com/glebarez/go-sqlite v1.21.1 // indirect
@@ -79,7 +80,7 @@ require (
 	github.com/google/go-cmp v0.6.0 // indirect
 	github.com/google/go-querystring v1.1.0 // indirect
 	github.com/google/safetext v0.0.0-20240104143208-7a7d9b3d812f // indirect
-	github.com/google/uuid v1.3.0 // indirect
+	github.com/google/uuid v1.5.0 // indirect
 	github.com/googleapis/enterprise-certificate-proxy v0.2.3 // indirect
 	github.com/googleapis/gax-go/v2 v2.7.1 // indirect
 	github.com/gorilla/mux v1.8.0 // indirect
@@ -103,7 +104,7 @@ require (
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/jtolio/eventkit v0.0.0-20221004135224-074cf276595b // indirect
 	github.com/jzelinskie/whirlpool v0.0.0-20201016144138-0675e54bb004 // indirect
-	github.com/klauspost/compress v1.16.5 // indirect
+	github.com/klauspost/compress v1.16.7 // indirect
 	github.com/klauspost/cpuid/v2 v2.2.4 // indirect
 	github.com/klauspost/pgzip v1.2.5 // indirect
 	github.com/koofr/go-httpclient v0.0.0-20230225102643-5d51a2e9dea6 // indirect
@@ -127,6 +128,7 @@ require (
 	github.com/nwaples/rardecode v1.1.3 // indirect
 	github.com/onsi/gomega v1.28.1 // indirect
 	github.com/oracle/oci-go-sdk/v65 v65.32.0 // indirect
+	github.com/orca-zhang/ecache v1.1.3 // indirect
 	github.com/pengsrc/go-shared v0.2.1-0.20190131101655-1999055a4a14 // indirect
 	github.com/perimeterx/marshmallow v1.1.4 // indirect
 	github.com/pierrec/lz4/v4 v4.1.17 // indirect
