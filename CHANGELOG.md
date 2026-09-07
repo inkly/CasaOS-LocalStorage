@@ -6,7 +6,8 @@ All notable changes to CasaOS LocalStorage are documented here.
 
 ### Changed
 
-- The Go module path is now `github.com/inkly/CasaOS-LocalStorage`, and the shared library dependency is `github.com/inkly/CasaOS-Common` v0.4.22 (same code as IceWhale's v0.4.21 apart from its own module path). No behaviour changes; the regenerated `codegen/` output is byte-identical.
+- The Go module path is now `github.com/inkly/CasaOS-LocalStorage`, and the shared library dependency is `github.com/inkly/CasaOS-Common` v0.4.22 (same code as IceWhale's v0.4.21 apart from its own module path). The regenerated `codegen/` output is byte-identical. The pin moves a long way — from v0.4.9-alpha6 — but the twelve packages this component imports from it are unchanged on the paths it calls, with one exception below.
+- The shared library brings in `orca-zhang/ecache`, whose package `init()` starts a goroutine that sleeps in a loop for the lifetime of the process. Nothing here calls the cache it backs; the goroutine exists on import alone.
 
 ## [0.4.31] - 2026-09-07
 
