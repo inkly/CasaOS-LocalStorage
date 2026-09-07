@@ -176,7 +176,7 @@ changelog:
       - "^test:"
 release:
   github:
-    owner: IceWhaleTech
+    owner: inkly
     name: CasaOS-LocalStorage
   draft: true
   prerelease: auto
