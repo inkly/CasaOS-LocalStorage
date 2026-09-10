@@ -4,7 +4,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/inkly/CasaOS-LocalStorage/model"
+	"github.com/ReCasaOS/CasaOS-LocalStorage/model"
 	log "github.com/sirupsen/logrus"
 )
 

@@ -1,9 +1,10 @@
-module github.com/inkly/CasaOS-LocalStorage
+module github.com/ReCasaOS/CasaOS-LocalStorage
 
 go 1.21
 
 require (
 	bazil.org/fuse v0.0.0-20230120002735-62a210ff1fd5
+	github.com/ReCasaOS/CasaOS-Common v0.4.23
 	github.com/Xhofe/go-cache v0.0.0-20220723083548-714439c8af9a
 	github.com/coreos/go-systemd v0.0.0-20191104093116-d3cd4ed1dbcf
 	github.com/deckarep/golang-set/v2 v2.3.0
@@ -11,7 +12,6 @@ require (
 	github.com/getkin/kin-openapi v0.117.0
 	github.com/glebarez/sqlite v1.8.0
 	github.com/go-resty/resty/v2 v2.7.0
-	github.com/inkly/CasaOS-Common v0.4.22
 	github.com/json-iterator/go v1.1.12
 	github.com/labstack/echo/v4 v4.12.0
 	github.com/maruel/natural v1.1.0

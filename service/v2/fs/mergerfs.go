@@ -3,7 +3,7 @@ package fs
 import (
 	"strings"
 
-	"github.com/inkly/CasaOS-LocalStorage/codegen"
+	"github.com/ReCasaOS/CasaOS-LocalStorage/codegen"
 )
 
 const (

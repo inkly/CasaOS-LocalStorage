@@ -5,8 +5,8 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/inkly/CasaOS-LocalStorage/common"
-	model2 "github.com/inkly/CasaOS-LocalStorage/service/model"
+	"github.com/ReCasaOS/CasaOS-LocalStorage/common"
+	model2 "github.com/ReCasaOS/CasaOS-LocalStorage/service/model"
 	"github.com/moby/sys/mountinfo"
 )
 

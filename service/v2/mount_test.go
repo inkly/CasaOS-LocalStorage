@@ -5,8 +5,8 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/inkly/CasaOS-LocalStorage/codegen"
-	"github.com/inkly/CasaOS-LocalStorage/service/v2/wrapper"
+	"github.com/ReCasaOS/CasaOS-LocalStorage/codegen"
+	"github.com/ReCasaOS/CasaOS-LocalStorage/service/v2/wrapper"
 	"gotest.tools/v3/assert"
 
 	"github.com/moby/sys/mountinfo"

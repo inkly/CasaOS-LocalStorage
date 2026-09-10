@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/inkly/CasaOS-Common/external"
-	"github.com/inkly/CasaOS-LocalStorage/codegen/message_bus"
-	"github.com/inkly/CasaOS-LocalStorage/common"
+	"github.com/ReCasaOS/CasaOS-Common/external"
+	"github.com/ReCasaOS/CasaOS-LocalStorage/codegen/message_bus"
+	"github.com/ReCasaOS/CasaOS-LocalStorage/common"
 	"github.com/samber/lo"
 )
 

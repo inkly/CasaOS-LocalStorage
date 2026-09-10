@@ -3,9 +3,9 @@ package service
 import (
 	"os"
 
-	"github.com/inkly/CasaOS-Common/utils/command"
-	"github.com/inkly/CasaOS-Common/utils/logger"
-	"github.com/inkly/CasaOS-LocalStorage/pkg/config"
+	"github.com/ReCasaOS/CasaOS-Common/utils/command"
+	"github.com/ReCasaOS/CasaOS-Common/utils/logger"
+	"github.com/ReCasaOS/CasaOS-LocalStorage/pkg/config"
 	"github.com/shirou/gopsutil/host"
 	"go.uber.org/zap"
 )

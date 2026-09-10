@@ -1,9 +1,9 @@
 package v2
 
 import (
-	"github.com/inkly/CasaOS-Common/utils/logger"
-	"github.com/inkly/CasaOS-LocalStorage/codegen"
-	"github.com/inkly/CasaOS-LocalStorage/pkg/fstab"
+	"github.com/ReCasaOS/CasaOS-Common/utils/logger"
+	"github.com/ReCasaOS/CasaOS-LocalStorage/codegen"
+	"github.com/ReCasaOS/CasaOS-LocalStorage/pkg/fstab"
 	"go.uber.org/zap"
 )
 

@@ -3,7 +3,7 @@ package v2
 import (
 	"sync"
 
-	"github.com/inkly/CasaOS-LocalStorage/service/v2/wrapper"
+	"github.com/ReCasaOS/CasaOS-LocalStorage/service/v2/wrapper"
 	"gorm.io/gorm"
 )
 

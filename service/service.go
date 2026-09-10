@@ -1,11 +1,11 @@
 package service
 
 import (
-	"github.com/inkly/CasaOS-Common/external"
-	"github.com/inkly/CasaOS-LocalStorage/codegen/message_bus"
-	"github.com/inkly/CasaOS-LocalStorage/pkg/config"
-	v2 "github.com/inkly/CasaOS-LocalStorage/service/v2"
-	"github.com/inkly/CasaOS-LocalStorage/service/v2/wrapper"
+	"github.com/ReCasaOS/CasaOS-Common/external"
+	"github.com/ReCasaOS/CasaOS-LocalStorage/codegen/message_bus"
+	"github.com/ReCasaOS/CasaOS-LocalStorage/pkg/config"
+	v2 "github.com/ReCasaOS/CasaOS-LocalStorage/service/v2"
+	"github.com/ReCasaOS/CasaOS-LocalStorage/service/v2/wrapper"
 	"github.com/patrickmn/go-cache"
 	"gorm.io/gorm"
 )

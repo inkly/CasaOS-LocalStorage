@@ -16,16 +16,16 @@ import (
 	"strings"
 	"time"
 
-	"github.com/inkly/CasaOS-Common/model"
-	"github.com/inkly/CasaOS-Common/utils/common_err"
-	"github.com/inkly/CasaOS-Common/utils/logger"
+	"github.com/ReCasaOS/CasaOS-Common/model"
+	"github.com/ReCasaOS/CasaOS-Common/utils/common_err"
+	"github.com/ReCasaOS/CasaOS-Common/utils/logger"
 	"github.com/labstack/echo/v4"
 	"go.uber.org/zap"
 
-	model1 "github.com/inkly/CasaOS-LocalStorage/model"
-	model2 "github.com/inkly/CasaOS-LocalStorage/service/model"
+	model1 "github.com/ReCasaOS/CasaOS-LocalStorage/model"
+	model2 "github.com/ReCasaOS/CasaOS-LocalStorage/service/model"
 
-	"github.com/inkly/CasaOS-LocalStorage/service"
+	"github.com/ReCasaOS/CasaOS-LocalStorage/service"
 )
 
 const storageLabelMaxLength = 16

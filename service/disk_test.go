@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/inkly/CasaOS-LocalStorage/model"
+	"github.com/ReCasaOS/CasaOS-LocalStorage/model"
 	"gotest.tools/v3/assert"
 )
 

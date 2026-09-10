@@ -3,7 +3,7 @@ package model
 import (
 	"path/filepath"
 
-	"github.com/inkly/CasaOS-Common/utils/file"
+	"github.com/ReCasaOS/CasaOS-Common/utils/file"
 )
 
 const defaultMountPath = "/media"

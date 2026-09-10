@@ -1,6 +1,6 @@
 package fs
 
-import "github.com/inkly/CasaOS-LocalStorage/codegen"
+import "github.com/ReCasaOS/CasaOS-LocalStorage/codegen"
 
 type Extension interface {
 	GetFSType() string

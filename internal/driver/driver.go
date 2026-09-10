@@ -3,7 +3,7 @@ package driver
 import (
 	"context"
 
-	"github.com/inkly/CasaOS-LocalStorage/model"
+	"github.com/ReCasaOS/CasaOS-LocalStorage/model"
 )
 
 type Driver interface {

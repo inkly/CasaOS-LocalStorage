@@ -60,6 +60,8 @@ github.com/Microsoft/go-winio v0.5.2/go.mod h1:WpS1mjBmmwHBEWmogvA2mj8546UReBk4v
 github.com/Microsoft/go-winio v0.6.1 h1:9/kr64B9VUZrLm5YYwbGtUJnMgqWVOdUAXu6Migciow=
 github.com/Microsoft/go-winio v0.6.1/go.mod h1:LRdKpFKfdobln8UmuiYcKPot9D2v6svN5+sAH+4kjUM=
 github.com/RaveNoX/go-jsoncommentstrip v1.0.0/go.mod h1:78ihd09MekBnJnxpICcwzCMzGrKSKYe4AqU6PDYYpjk=
+github.com/ReCasaOS/CasaOS-Common v0.4.23 h1:UhoFpg2mWkCOEefETETmtRga1KfDErqYnRUHps6eR2M=
+github.com/ReCasaOS/CasaOS-Common v0.4.23/go.mod h1:0B3ukaWFZnO1n17QZx838MuTwxwxdHegJEJvJydADJs=
 github.com/Unknwon/goconfig v1.0.0 h1:9IAu/BYbSLQi8puFjUQApZTxIHqSwrj5d8vpP8vTq4A=
 github.com/Unknwon/goconfig v1.0.0/go.mod h1:wngxua9XCNjvHjDiTiV26DaKDT+0c63QR6H5hjVUUxw=
 github.com/Xhofe/go-cache v0.0.0-20220723083548-714439c8af9a h1:RenIAa2q4H8UcS/cqmwdT1WCWIAH5aumP8m8RpbqVsE=
@@ -280,8 +282,6 @@ github.com/iguanesolutions/go-systemd/v5 v5.1.1 h1:Hs0Z16knPGCBFnKECrICPh+RQ89Sg
 github.com/iguanesolutions/go-systemd/v5 v5.1.1/go.mod h1:Quv57scs6S7T0rC6qyLfW20KU/P4p9hrbLPF+ILYrXY=
 github.com/inconshreveable/mousetrap v1.1.0 h1:wN+x4NVGpMsO7ErUn/mUI3vEoE6Jt13X2s0bqwp9tc8=
 github.com/inconshreveable/mousetrap v1.1.0/go.mod h1:vpF70FUmC8bwa3OWnCshd2FqLfsEA9PFc4w1p2J65bw=
-github.com/inkly/CasaOS-Common v0.4.22 h1:uyNZrHELRznNHotr5S7FGZrv2OdbtiEbFrJSjqxA1F4=
-github.com/inkly/CasaOS-Common v0.4.22/go.mod h1:sQ6BywHKpH/3eDWNJMll4okLOyvnKL9apWM1Ym+ws/A=
 github.com/invopop/yaml v0.1.0/go.mod h1:2XuRLgs/ouIrW3XNzuNj7J3Nvu/Dig5MXvbCEdiBN3Q=
 github.com/invopop/yaml v0.2.0 h1:7zky/qH+O0DwAyoobXUqvVBwgBFRxKoQ/3FjcVpjTMY=
 github.com/invopop/yaml v0.2.0/go.mod h1:2XuRLgs/ouIrW3XNzuNj7J3Nvu/Dig5MXvbCEdiBN3Q=

@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	exec2 "github.com/inkly/CasaOS-Common/utils/exec"
+	exec2 "github.com/ReCasaOS/CasaOS-Common/utils/exec"
 )
 
 // exec smart

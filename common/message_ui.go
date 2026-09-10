@@ -1,7 +1,7 @@
 package common
 
 import (
-	"github.com/inkly/CasaOS-LocalStorage/codegen/message_bus"
+	"github.com/ReCasaOS/CasaOS-LocalStorage/codegen/message_bus"
 )
 
 const (
