@@ -1,5 +1,7 @@
 # CasaOS-LocalStorage
 
+> **Not affiliated with IceWhale.** An independent, community-maintained distribution of CasaOS, not produced or endorsed by Shanghai IceWhale Technology Limited. CASAOS is their trademark, used here only to say what this is a release of. The original project is [IceWhaleTech/CasaOS](https://github.com/IceWhaleTech/CasaOS); report problems with this distribution at [inkly/CasaOS/issues](https://github.com/inkly/CasaOS/issues).
+
 The storage service of CasaOS. It enumerates the disks and partitions attached to the host, mounts and unmounts them, formats and renames volumes, handles USB automount, and builds and restores the merged `/DATA` tree that the rest of CasaOS reads and writes.
 
 This repository is part of the **inkly distribution of CasaOS**, a maintained release of the project after upstream [IceWhaleTech/CasaOS-LocalStorage](https://github.com/IceWhaleTech/CasaOS-LocalStorage) stopped shipping in 2025. Almost everything this fork adds came through [alvins82's fork](https://github.com/alvins82/CasaOS-LocalStorage), which kept merged storage working on mergerfs 2.40 and Ubuntu 26.
