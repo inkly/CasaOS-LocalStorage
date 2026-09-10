@@ -2,6 +2,13 @@
 
 All notable changes to CasaOS LocalStorage are documented here.
 
+## [0.4.34] - 2026-09-10
+
+### Changed
+
+- `api/local_storage/openapi.yaml` is embedded verbatim and served at `/doc`, so the IceWhale banner it opened with was plaintext in the shipped binary and fetched from `IceWhaleTech/logo` by the reader's browser. It is gone, and the link for reporting problems points at this distribution. `PKGBUILD` and the local codegen package follow the same move; the `@icewhale` npm scope named a publisher this project is not.
+- Nothing that belongs to IceWhale moved: the catalogue, the icon CDN, the cloud OAuth host and the migration entries are untouched.
+
 ## [0.4.33] - 2026-09-10
 
 ### Changed
