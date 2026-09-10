@@ -176,7 +176,7 @@ changelog:
       - "^test:"
 release:
   github:
-    owner: inkly
+    owner: ReCasaOS
     name: CasaOS-LocalStorage
   draft: true
   prerelease: auto

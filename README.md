@@ -1,6 +1,6 @@
 # CasaOS-LocalStorage
 
-> **Not affiliated with IceWhale.** An independent, community-maintained distribution of CasaOS, not produced or endorsed by Shanghai IceWhale Technology Limited. CASAOS is their trademark, used here only to say what this is a release of. The original project is [IceWhaleTech/CasaOS](https://github.com/IceWhaleTech/CasaOS); report problems with this distribution at [inkly/CasaOS/issues](https://github.com/inkly/CasaOS/issues).
+> **Not affiliated with IceWhale.** An independent, community-maintained distribution of CasaOS, not produced or endorsed by Shanghai IceWhale Technology Limited. CASAOS is their trademark, used here only to say what this is a release of. The original project is [IceWhaleTech/CasaOS](https://github.com/IceWhaleTech/CasaOS); report problems with this distribution at [inkly/CasaOS/issues](https://github.com/ReCasaOS/CasaOS/issues).
 
 The storage service of CasaOS. It enumerates the disks and partitions attached to the host, mounts and unmounts them, formats and renames volumes, handles USB automount, and builds and restores the merged `/DATA` tree that the rest of CasaOS reads and writes.
 
@@ -45,10 +45,10 @@ The pool definition — mount point and source volumes — lives in the SQLite d
 Components are not installed individually. One command installs or upgrades the whole distribution:
 
 ```sh
-curl -fsSL https://github.com/inkly/CasaOS-Install/releases/latest/download/install.sh | sudo bash
+curl -fsSL https://github.com/ReCasaOS/CasaOS-Install/releases/latest/download/install.sh | sudo bash
 ```
 
-What a release contains, and how it is built, is described in [CasaOS-Install](https://github.com/inkly/CasaOS-Install#readme).
+What a release contains, and how it is built, is described in [CasaOS-Install](https://github.com/ReCasaOS/CasaOS-Install#readme).
 
 ## What this fork changed
 
