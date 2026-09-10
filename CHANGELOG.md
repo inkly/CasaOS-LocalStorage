@@ -2,6 +2,13 @@
 
 All notable changes to CasaOS LocalStorage are documented here.
 
+## [0.4.33] - 2026-09-10
+
+### Changed
+
+- The Go module is now `github.com/ReCasaOS/CasaOS-LocalStorage`, built against `github.com/ReCasaOS/CasaOS-Common v0.4.23`, following the move to the ReCasaOS organisation. A module path is not a URL and does not follow a redirect, so the rename has to be made in the source and released to take effect.
+- Nothing else changed.
+
 ## [0.4.32] - 2026-09-07
 
 ### Changed
